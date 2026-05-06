@@ -1,10 +1,71 @@
-# Amigos de La Tertulia - Proyecto Web
+# 🍷 Amigos de La Tertulia
 
-## 🎯 Objetivo
+Plataforma de membresías para salvar el bar histórico "La Tertulia" (47 años de cultura en Granada).
 
-Plataforma de membresías para salvar el bar cultural "La Tertulia" (47 años de historia en Granada).
+**[Live Demo](https://frontend-delta-ten-77.vercel.app)** | **[GitHub](https://github.com/elcorreveidile/amigos-de-la-tertulia)**
 
-**Misión:** Convertir visitantes en socios recurrentes mediante suscripciones mensuales/anuales a través de Stripe.
+---
+
+## ✨ Características
+
+- 🔐 **Autenticación Magic-Link** - Sin contraseñas, solo email
+- 🎨 **Diseño Vintage/Editorial** - Estilo café literario con identidad corporativa roja (#C41E3A)
+- 💳 **Pagos Recurrentes** - Integración completa con Stripe subscriptions
+- 👥 **Dashboards** - Panel para socios (carnet digital, pagos) y admin (gestión)
+- 📱 **Responsive** - Optimizado para móvil, tablet y desktop
+- ⚡ **React 19 + Vite** - Ultra-rápido con HMR
+- 🐘 **FastAPI** - Backend async Python
+
+---
+
+## 🚀 Quick Start
+
+### Desarrollo Local
+
+**1. Clona el repo:**
+```bash
+git clone https://github.com/elcorreveidile/amigos-de-la-tertulia.git
+cd amigos-de-la-tertulia
+```
+
+**2. Inicia el Backend:**
+```bash
+cd backend
+python3 server_simple.py
+```
+✅ Verás: `"Uvicorn running on http://0.0.0.0:8000"`
+
+**3. Inicia el Frontend (en otra terminal):**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+✅ Verás: `"Local: http://localhost:5173/"`
+
+**4. ¡Abre tu navegador!**
+```
+http://localhost:5173/
+```
+
+---
+
+## 👥 Cómo Usar
+
+### Login como Socio
+
+1. Ve a http://localhost:5173/login
+2. Escribe cualquier email (ej: `maria@example.com`)
+3. **MIRA LA TERMINAL DEL BACKEND** - aparecerá un magic-link
+4. Copia ese enlace y ábrelo en el navegador
+
+### Login como Admin
+
+1. Ve a http://localhost:5173/login
+2. Escribe: `javier@amigoslatertulia.com`
+3. Copia el magic-link de la terminal
+4. ¡Listo! Tienes acceso admin
 
 ---
 
@@ -12,47 +73,47 @@ Plataforma de membresías para salvar el bar cultural "La Tertulia" (47 años de
 
 ```
 amigos-la-tertulia/
-├── frontend/                      # React 19 + Vite
+├── frontend/                 # React 19 + Vite
 │   ├── src/
-│   │   ├── styles/
-│   │   │   ├── variables.css     # Design tokens (colores, fuentes, espaciados)
-│   │   │   └── vintage.css       # Estilos editorial/café literario
-│   │   └── App.jsx               # Landing Page completa
-│   ├── index.html                # Con Google Fonts integradas
-│   └── package.json
+│   │   ├── pages/
+│   │   │   ├── Landing.jsx          # Landing page principal
+│   │   │   ├── Login.jsx            # Magic-link authentication
+│   │   │   ├── socio/               # Área de socio
+│   │   │   │   ├── DashboardSocio.jsx
+│   │   │   │   ├── CarnetDigital.jsx
+│   │   │   │   └── MisPagos.jsx
+│   │   │   └── admin/               # Área de admin
+│   │   │       ├── DashboardAdmin.jsx
+│   │   │       └── Socios.jsx
+│   │   ├── lib/
+│   │   │   └── stripe.js            # Stripe integration
+│   │   └── styles/
+│   │       ├── variables.css        # Design tokens
+│   │       └── vintage.css          # Vintage styles
+│   └── public/                      # Imágenes del bar
 │
-├── backend/                       # FastAPI
-│   ├── server.py                 # API principal (475 líneas)
-│   ├── models/                   # Pydantic models
-│   ├── routes/                   # API routes
-│   ├── requirements.txt
-│   └── .env.example              # Template de variables de entorno
+├── backend/                  # FastAPI (Python)
+│   ├── server_simple.py      # API principal con Stripe
+│   ├── data/                 # JSON storage (dev mode)
+│   └── requirements.txt
 │
-└── README.md                     # Este archivo
+└── docs/                     # Documentación completa
+    ├── STRIPE-SETUP.md       # Configurar pagos
+    ├── DEPLOY-GUIDE.md       # Guía de despliegue
+    ├── COMO-PROBAR.md        # Testing guide
+    └── GUIA-COMPLETA.md       # Documentación técnica
 ```
 
 ---
 
-## 🎨 Sistema de Diseño Vintage/Editorial
+## 🎨 Diseño Visual
 
-### Fotografías del Bar
-✅ **Fotos reales de La Tertulia integradas:**
-- `escenario.jpg` - Vista interior del bar (hero section)
-- `libros.jpg` - Biblioteca del establecimiento (manifiesto)
-
-**Optimización web:**
-- Versión 1920px: 576KB (desktop)
-- Versión 1200px: 250KB (tablet)
-- Versión 768px: 111KB (móvil)
-- Carga responsive automática según dispositivo
-
-### Paleta de Colores
+### Paleta Corporativa
 ```css
---vino: #722F37              /* Primario - Burdeos */
---oro: #C5A059               /* Secundario - Bronce */
---papel: #FDFBF7             /* Fondo crema */
---tinta: #2C2C2C             /* Texto grafito */
---emergencia: #D32F2F        /* CTA urgente */
+--corporativo: #C41E3A    /* Rojo corporativo */
+--oro: #D4AF37            /* Dorado */
+--papel: #FFFFFF          /* Blanco puro */
+--tinta: #000000          /* Negro puro */
 ```
 
 ### Tipografías
@@ -60,312 +121,166 @@ amigos-la-tertulia/
 - **Lato** (sans-serif) - Cuerpo de texto
 - **Inter** (sans-serif) - Elementos UI
 
-### Estilos Clave
-- Sombras sólidas: `4px 4px 0 rgba(197, 160, 89, 0.3)`
-- Bordes Vintage: `1px solid var(--oro)`
-- Decoración con comillas: `::before { content: "❝"; }`
-- Hover effects con transform y sombra
+---
+
+## 💳 Configurar Stripe (Opcional)
+
+Para activar los pagos, sigue la guía completa: **[STRIPE-SETUP.md](./STRIPE-SETUP.md)**
+
+Resumen:
+1. Crear cuenta en Stripe Dashboard
+2. Crear 3 productos (Joven, Colaborador, Protector)
+3. Crear 6 precios (2 por producto: mensual/anual)
+4. Configurar webhook endpoint
+5. Añadir claves en `backend/.env.dev`
 
 ---
 
-## ✅ Landing Page Completada
+## 🌐 Deploy en Producción
 
-### Secciones Incluidas
+### Frontend (Vercel)
 
-1. **Navbar** - Navegación simple con enlaces ancla
-2. **Hero Section** - Mensaje urgente con badge "⚠️ URGENTE"
-3. **Contador de Socios** - 47/100 con barra de progreso animada
-4. **Manifiesto** - Historia del bar y por qué debe salvarse
-5. **Beneficios** - 6 cards vintage:
-   - Eventos Exclusivos
-   - Voto en Asamblea
-   - Descuentos Especiales
-   - Carnet Digital
-   - Eventos Anuales
-   - Preservar Historia
-6. **Tipos de Socio** - 3 tiers:
-   - **Socio Joven**: €5/mes o €50/año
-   - **Socio Colaborador**: €10/mes o €100/año (⭐ Popular)
-   - **Socio Protector**: €25/mes o €250/año
-7. **Testimonios** - 3 citas vintage con autores
-8. **Footer** - Enlaces legales y branding
+**✅ Ya desplegado:** https://frontend-delta-ten-77.vercel.app
 
-### Contenido Emocional
+Deploy automático desde GitHub. Cada push a `main` hace deploy automático.
 
-El copywriting apela a:
-- **Historia**: "47 años de cultura"
-- **Urgencia**: "en peligro de cierre", "alquileres +40%"
-- **Comunidad**: testimonios reales de socios históricos
-- **Transparencia**: "tu cuota paga alquiler y sueldos"
+```bash
+cd frontend
+vercel --prod
+```
+
+### Backend (Railway)
+
+Sigue la guía: **[DEPLOY-GUIDE.md](./DEPLOY-GUIDE.md)**
+
+1. Conecta el repo de GitHub en Railway
+2. Root directory: `backend`
+3. Configura variables de entorno
+4. Deploy!
 
 ---
 
-## 🔧 Stack Tecnológico
+## ⚙️ Variables de Entorno
+
+### Backend (`.env.dev`)
+```bash
+# Frontend URL (para CORS)
+FRONTEND_ORIGIN=http://localhost:5173
+
+# JWT Secrets
+JWT_SECRET=tu_clave_secreta_aqui
+MAGIC_LINK_SECRET=tu_otra_clave_aqui
+
+# Stripe (opcional)
+STRIPE_API_KEY=sk_test_tu_clave_aqui
+STRIPE_WEBHOOK_SECRET=whsec_tu_webhook_aqui
+```
+
+### Frontend (`.env.local`)
+```bash
+VITE_API_URL=http://localhost:8000
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_tu_clave_aqui
+```
+
+---
+
+## 📊 Estado del Proyecto
+
+### ✅ Completado
+
+- [x] Landing page con diseño vintage
+- [x] Sistema de autenticación magic-link
+- [x] Dashboard de socio (carnet digital, pagos)
+- [x] Dashboard de admin (gestión de socios)
+- [x] Integración de Stripe (checkout + webhooks)
+- [x] Diseño responsive
+- [x] Deploy en Vercel (frontend)
+
+### 🚧 Pendiente
+
+- [ ] Deploy backend en Railway
+- [ ] Configurar claves de Stripe reales
+- [ ] Sistema de eventos y reservas
+- [ ] PWA con service worker
+- [ ] Emails reales con Resend
+
+---
+
+## 🧪 Testing
+
+Para pruebas completas, sigue: **[COMO-PROBAR.md](./COMO-PROBAR.md)**
+
+Principales tests:
+- Landing page carga correctamente
+- Magic-link authentication funciona
+- Dashboards de socio y admin accesibles
+- Flujo de pago (opcional)
+
+---
+
+## 🛠️ Stack Tecnológico
 
 ### Frontend
-- **React 19** - Última versión con hooks mejorados
+- **React 19** - Última versión
 - **Vite** - Build tool ultra-rápido
-- **CSS Puro** - Sin frameworks, diseño editorial a medida
-- **React Router** - Navegación (pendiente de configurar)
+- **React Router v7** - Navegación
+- **Stripe JS** - Pagos
 
 ### Backend
 - **FastAPI** - API async Python
-- **Motor (MongoDB)** - Driver async para MongoDB
-- **Stripe** - Pagos recurrentes (modo suscripción)
-- **Resend** - Emails magic-link
-- **Pydantic** - Validación de datos con tipos Literales
+- **Stripe Python SDK** - Pagos recurrentes
+- **Pydantic** - Validación de datos
+- **Uvicorn** - Server ASGI
 
-### Modelo de Datos Adaptado
-
-```python
-# CAMBIOS RESPECTO A LA-CLASE-DIGITAL:
-# Course → Membership
-# Enrollment → Subscription
-# "student" → "socio"
-
-class UserOut(BaseModel):
-    role: Literal["admin", "socio", "simpatizante"]
-    status: Literal["active", "pending_payment", "inactive"]
-    member_since: Optional[str]
-
-class MembershipOut(BaseModel):
-    name: Literal["Socio Protector", "Socio Colaborador", "Socio Joven"]
-    price_monthly_eur: int
-    price_yearly_eur: int
-    benefits: list[str]
-
-class SubscriptionOut(BaseModel):
-    stripe_subscription_id: str
-    status: Literal["active", "past_due", "canceled"]
-    current_period_end: str
-```
+### Infraestructura
+- **Vercel** - Frontend hosting
+- **Railway** - Backend hosting (próximamente)
+- **GitHub** - Version control
 
 ---
 
-## 🚀 Próximos Pasos (FASE 1)
+## 📚 Documentación
 
-### 1. Configurar Stripe (Máxima Prioridad)
-
-**Acciones en Stripe Dashboard:**
-
-1. Crear Products (3 tipos de socio):
-   ```
-   - Socio Joven
-   - Socio Colaborador
-   - Socio Protector
-   ```
-
-2. Crear Prices (modo subscription):
-   ```
-   Socio Joven:
-   - price_id_joven_monthly (€5/mes)
-   - price_id_joven_yearly (€50/año)
-
-   Socio Colaborador:
-   - price_id_colaborador_monthly (€10/mes)
-   - price_id_colaborador_yearly (€100/año)
-
-   Socio Protector:
-   - price_id_protector_monthly (€25/mes)
-   - price_id_protector_yearly (€250/año)
-   ```
-
-3. Configurar Webhook:
-   ```
-   URL: https://tu-backend.com/webhook/stripe
-   Eventos:
-   - customer.subscription.created
-   - customer.subscription.deleted
-   - invoice.payment_failed
-   - checkout.session.completed
-   ```
-
-4. Copiar claves API:
-   ```
-   STRIPE_API_KEY=sk_test_...
-   STRIPE_WEBHOOK_SECRET=whsec_...
-   STRIPE_PUBLISHABLE_KEY=pk_test_...
-   ```
-
-### 2. Implementar Flujo de Pago en Frontend
-
-**Archivo: `frontend/src/lib/stripe.js`**
-```javascript
-import { loadStripe } from '@stripe/stripe-js'
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
-
-export const createCheckoutSession = async (membershipId, billingPeriod) => {
-  const response = await fetch('http://localhost:8000/stripe/create-checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ membership_id: membershipId, billing_period: billingPeriod })
-  })
-
-  const { checkout_url } = await response.json()
-  window.location.href = checkout_url
-}
-```
-
-**Archivo: `frontend/src/App.jsx`**
-```javascript
-import { createCheckoutSession } from './lib/stripe'
-
-const handleJoin = async (membership, billingPeriod = 'monthly') => {
-  const membershipId = {
-    'Socio Joven': 'membership_joven',
-    'Socio Colaborador': 'membership_colaborador',
-    'Socio Protector': 'membership_protector'
-  }[membership.name]
-
-  await createCheckoutSession(membershipId, billingPeriod)
-}
-```
-
-### 3. Configurar Backend
-
-**Instalar dependencias:**
-```bash
-cd backend
-pip install -r requirements.txt
-```
-
-**Configurar `.env`:**
-```bash
-cp .env.example .env
-# Editar .env con claves reales:
-# - MONGO_URL
-# - JWT_SECRET
-# - STRIPE_API_KEY
-# - STRIPE_WEBHOOK_SECRET
-# - RESEND_API_KEY
-```
-
-**Arrancar servidor:**
-```bash
-uvicorn server:app --reload --port 8000
-```
-
-### 4. Imagen del Hero
-
-**Agregar foto del bar:**
-```
-Colocar archivo en: frontend/public/bar-hero-bw.jpg
-Dimensiones recomendadas: 1920x1080px (16:9)
-Estilo: Blanco y negro, high-key, ambiente vintage
-```
-
-### 5. Probar el Flujo Completo
-
-1. Iniciar backend: `uvicorn server:app --reload --port 8000`
-2. Iniciar frontend: `cd frontend && npm run dev`
-3. Navegar a `http://localhost:5173`
-4. Click en "Hazte Socio" → Socio Colaborador
-5. Completar checkout en modo test (tarjeta: 4242 4242 4242 4242)
-6. Verificar redirección a Dashboard
-7. Comprobar webhook → usuario activado como "socio"
+- **[STRIPE-SETUP.md](./STRIPE-SETUP.md)** - Configurar pagos Stripe
+- **[DEPLOY-GUIDE.md](./DEPLOY-GUIDE.md)** - Guía de despliegue
+- **[COMO-PROBAR.md](./COMO-PROBAR.md)** - Testing end-to-end
+- **[GUIA-COMPLETA.md](./GUIA-COMPLETA.md)** - Documentación técnica
+- **[INICIO-RAPIDO.md](./INICIO-RAPIDO.md)** - Quick start
+- **[TEST-RESULTS.md](./TEST-RESULTS.md)** - Resultados de pruebas
 
 ---
 
-## 📊 Métricas de Éxito
+## 📄 Licencia
 
-### Conversión
-- Visitantes → Socios registrados: **> 5%**
-- Visitantes → Pagos completados: **> 2%**
-
-### Engagement
-- Socios activos (reservan eventos): **> 30%**
-- Retención (siguen mes 2): **> 70%**
-
-### Técnicos
-- Web Performance: **< 3s** First Contentful Paint
-- Mobile Friendly: **100/100** Google Lighthouse
-- Uptime: **> 99.5%**
+Este proyecto está bajo la **MIT License** - ver archivo [LICENSE](./LICENSE) para detalles.
 
 ---
 
-## 🛠️ Comandos Útiles
+## 🤝 Contribuciones
 
-### Frontend
-```bash
-cd frontend
-npm install              # Instalar dependencias
-npm run dev             # Servidor desarrollo (http://localhost:5173)
-npm run build           # Build para producción
-npm run preview         # Previsualizar build
-```
+Contribuciones bienvenidas! Por favor:
 
-### Backend
-```bash
-cd backend
-pip install -r requirements.txt    # Instalar dependencias
-uvicorn server:app --reload        # Servidor desarrollo (http://localhost:8000)
-```
-
-### Testing (Stripe)
-```bash
-# Usar tarjeta de prueba
-Número: 4242 4242 4242 4242
-CVC: Cualquier 3 dígitos
-Fecha: Cualquier fecha futura
-ZIP: Cualquier 5 dígitos
-```
+1. Fork el repo
+2. Crea una rama (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
 ---
 
-## 📱 Roadmap Completo
+## 🍷 Sobre el Proyecto
 
-### ✅ FASE 1 (Completada)
-- [x] Estructura del proyecto
-- [x] Landing Page vintage
-- [x] Backend adaptado con modelos de membresías
-- [x] Diseño editorial completo
+**Amigos de La Tertulia** es una plataforma de membresías creada para salvar el bar histórico de Granada (España), abierto en 1977 y en peligro de cierre debido a la gentrificación.
 
-### 🔄 FASE 1 (En Progreso)
-- [ ] Configurar Stripe products y prices
-- [ ] Implementar flujo de pago frontend
-- [ ] Probar checkout en modo test
-
-### ⏳ FASE 2 (Pendiente)
-- [ ] Dashboard socio
-- [ ] Carnet digital con QR
-- [ ] Autenticación magic-link
-- [ ] Historial de cuotas
-
-### ⏳ FASE 3 (Pendiente)
-- [ ] Gestión de eventos
-- [ ] Reserva de plazas
-- [ ] Blog/comunicados
-
-### ⏳ FASE 4 (Pendiente)
-- [ ] PWA (Progressive Web App)
-- [ ] Carnet móvil offline
-- [ ] Notificaciones push
+**Misión:** Preservar 47 años de cultura, poesía y tradición mediante la participación comunitaria.
 
 ---
 
-## 📝 Notas Importantes
+## 📞 Contacto
 
-1. **El hero necesita imagen**: Por ahora usa gradiente, pero debe tener foto del bar en B/N
-2. **Stripe debe estar en modo test** durante desarrollo
-3. **MongoDB Atlas** necesita configurarse antes de arrancar el backend
-4. **Resend** necesita configurarse para enviar magic-links
-5. **Frontend y backend** deben estar en puertos distintos (5173 y 8000)
+- **GitHub:** [elcorreveidile](https://github.com/elcorreveidile)
+- **Live:** https://frontend-delta-ten-77.vercel.app
 
 ---
 
-## 🎯 Foco Actual: Completar Pago
-
-**Prioridad #1**: Hacer que el botón "Hazte Socio" funcione end-to-end.
-
-1. Configurar Stripe Dashboard (5 min)
-2. Mapear price_ids en backend (5 min)
-3. Conectar frontend con API (10 min)
-4. Probar flujo completo (5 min)
-
-**Tiempo estimado**: 25 minutos para tener el flujo de pago funcionando.
-
----
-
-**Última actualización:** 2026-05-06
-**Estado:** Landing Page completa | Pendiente: Flujo de pago
+**¡Únete y salva La Tertulia! 🍷✨**
