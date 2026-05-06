@@ -123,6 +123,8 @@ function Landing() {
           <a href="#manifiesto" className="navbar-link">Manifiesto</a>
           <a href="#beneficios" className="navbar-link">Beneficios</a>
           <a href="#unete" className="navbar-link">Hazte Socio</a>
+          <a href="/login" className="navbar-link" style={{ fontWeight: '600' }}>🔐 Acceso Socio</a>
+          <a href="/login" className="navbar-link" style={{ fontWeight: '600' }}>⚙️ Acceso Admin</a>
         </div>
       </nav>
 
