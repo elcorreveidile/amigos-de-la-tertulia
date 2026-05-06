@@ -1,0 +1,75 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Build outputs
+dist/
+build/
+.vercel/
+.netlify/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+*.lcov
+
+# Data files
+backend/data/*.json
+!backend/data/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Stripe keys (security)
+STRIPE_*
+RESEND_*
+
+# Mongo
+*.mongo
+
+# Claude Code
+.claude/
+.claude.json
+
+# Backup files
+*.bak
+*.backup

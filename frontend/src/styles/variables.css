@@ -1,0 +1,84 @@
+/* Amigos de La Tertulia - Design Tokens */
+:root {
+  /* Paleta corporativa */
+  --corporativo: #C41E3A;       /* Primario - Rojo corporativo */
+  --oro: #D4AF37;               /* Secundario - Dorado */
+  --papel: #FFFFFF;             /* Fondo blanco puro */
+  --tinta: #000000;             /* Texto negro puro */
+  --emergencia: #C41E3A;        /* CTA urgente - mismo que corporativo */
+
+  /* Tipografías */
+  --font-display: 'Playfair Display', serif;  /* Títulos elegantes */
+  --font-body: 'Lato', sans-serif;           /* Cuerpo limpio */
+  --font-accent: 'Inter', sans-serif;        /* UI elements */
+
+  /* Espaciado editorial */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Bordes */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Sombras vintage */
+  --shadow-sm: 0 2px 4px rgba(26, 26, 26, 0.1);
+  --shadow-md: 4px 4px 0 rgba(212, 175, 55, 0.3);
+  --shadow-lg: 8px 8px 0 rgba(196, 30, 58, 0.2);
+
+  /* Transiciones */
+  --transition: all 0.3s ease;
+}
+
+/* Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--papel);
+  color: var(--tinta);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Container principal sin márgenes */
+.app {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+
+a {
+  color: var(--corporativo);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--oro);
+}
